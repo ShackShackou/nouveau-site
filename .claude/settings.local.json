@@ -10,7 +10,8 @@
       "Bash(curl:*)",
       "Bash(python:*)",
       "Read(//e/__CODE/NFT/WEBSITE/**)",
-      "Bash(copy:*)"
+      "Bash(copy:*)",
+      "Bash(sed:*)"
     ],
     "deny": [],
     "ask": []
