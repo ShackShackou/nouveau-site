@@ -77,6 +77,105 @@
                 max-width: 95%;
             }
         }
+        
+        /* Footer Styles */
+        .footer {
+            margin-top: 80px;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .social-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .social-link:hover {
+            color: #ff0000;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1a1a1a;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #333;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .copyright {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .dropdown-content {
+                bottom: auto;
+                top: 100%;
+                margin-bottom: 0;
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -92,6 +191,50 @@
                 Your browser does not support the video tag.
             </video>
         </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <!-- Logo -->
+                <div class="footer-logo">
+                    🔥⚡ <!-- Simple logo representation -->
+                </div>
+                
+                <!-- Social Links -->
+                <div class="social-links">
+                    <!-- OpenSea Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="social-link">🌊 OpenSea ▼</a>
+                        <div class="dropdown-content">
+                            <a href="https://opensea.io/collection/shackers-og" target="_blank">OG Shackers</a>
+                            <a href="https://opensea.io/collection/shackers-keys" target="_blank">Keys</a>
+                            <a href="https://opensea.io/collection/shackers-floor69" target="_blank">Floor 69</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Etherscan Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="social-link">⟠ Etherscan ▼</a>
+                        <div class="dropdown-content">
+                            <a href="https://etherscan.io/address/0x4d9f6cc9d80fdf481a5f367343fdb11b208fee1f#code" target="_blank">OG Shackers</a>
+                            <a href="https://etherscan.io/address/0x9b3F3A5FdE46C0543c888F3783bB0DDF3cD95533#code" target="_blank">OG Migration</a>
+                            <a href="https://etherscan.io/address/0x2B410506f1cE2C60D4470abd04A88c15E23102E6#code" target="_blank">Randomizer</a>
+                            <a href="https://etherscan.io/address/0x06b6058c48de9b365b07b901faacf19ea51b86b2#code" target="_blank">Keys</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Twitter -->
+                    <a href="https://twitter.com/shackersx" target="_blank" class="social-link">
+                        𝕏 Twitter
+                    </a>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="copyright">
+                    ©2024 All Rights Reserved. SHACKERS
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
