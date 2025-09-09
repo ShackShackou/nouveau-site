@@ -31,7 +31,7 @@
         }
         
         .logo-container {
-            margin-bottom: 50px;
+            margin-bottom: 30px;  /* Réduit l'espace sous le logo */
             animation: fadeIn 1.5s ease-in;
         }
         
@@ -39,7 +39,7 @@
             max-width: 600px;
             width: 100%;
             height: auto;
-            filter: invert(1);  /* Inverse les couleurs : noir devient blanc */
+            /* Logo déjà en couleur correcte, pas besoin d'inverser */
         }
         
         .video-container {
@@ -80,7 +80,7 @@
         
         /* Footer Styles */
         .footer {
-            margin-top: 100px;
+            margin-top: 50px;  /* Réduit l'espace au-dessus du footer */
             padding: 50px 20px 30px;
             background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
             width: 100%;
@@ -175,7 +175,7 @@
 <body>
     <div class="container">
         <div class="logo-container">
-            <img src="landscape-logo-dark.jpg" alt="SHACKERS">
+            <img src="logo.png" alt="SHACKERS">
         </div>
         
         <div class="video-container">
@@ -195,12 +195,7 @@
                         <img src="landscape-logo-dark.jpg" alt="SHACKERS" style="width: 120px; height: auto; opacity: 0.7; filter: invert(1);">
                     </div>
                     
-                    <!-- Navigation Links -->
-                    <div class="nav-links">
-                        <a href="#" class="nav-link">Home</a>
-                        <a href="#team" class="nav-link">Team</a>
-                        <a href="#migrate" class="nav-link">Migrate your OG Shacker</a>
-                    </div>
+                    <!-- Navigation Links removed -->
                     
                     <!-- Social Icons -->
                     <div class="social-icons">
