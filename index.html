@@ -22,6 +22,19 @@
             align-items: center;
             justify-content: flex-start;  /* Aligne le contenu vers le haut */
             padding-top: 0;  /* Logo tout en haut */
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;  /* Ajuster l'opacité pour la visibilité */
         }
         
         .container {
@@ -29,6 +42,8 @@
             max-width: 1200px;
             padding: 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;  /* S'assurer que le contenu est au-dessus de la vidéo */
         }
         
         .logo-container {
@@ -179,6 +194,11 @@
     </style>
 </head>
 <body>
+    <!-- Vidéo de fond -->
+    <video class="background-video" autoplay loop muted playsinline>
+        <source src="portal.webm" type="video/webm">
+        <source src="portal.382b05b5.webm" type="video/webm">
+    </video>
     <div class="container">
         <div class="logo-container">
             <img src="logo.png" alt="SHACKERS">
