@@ -11,7 +11,9 @@
       "Bash(python:*)",
       "Read(//e/__CODE/NFT/WEBSITE/**)",
       "Bash(copy:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []
