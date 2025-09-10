@@ -46,21 +46,23 @@
         }
         
         .logo-container {
-            margin-top: 20px;
-            margin-bottom: 30px;
+            margin-top: 10px;
+            margin-bottom: 15px;
             animation: fadeIn 1.5s ease-in;
         }
         
         .logo-container img {
-            max-width: 350px;
-            width: 85%;
+            max-width: 280px;
+            width: 80%;
             height: auto;
         }
         
         .game-container {
             width: 100%;
-            max-width: 1200px;
-            height: 600px;
+            max-width: 900px;
+            height: calc(100vh - 280px);
+            min-height: 500px;
+            max-height: 900px;
             margin: 0 auto;
             border-radius: 15px;
             overflow: hidden;
@@ -111,12 +113,14 @@
         
         @media (max-width: 768px) {
             .logo-container img {
-                max-width: 90%;
+                max-width: 220px;
             }
             
             .game-container {
                 max-width: 95%;
-                height: 500px;
+                height: calc(100vh - 250px);
+                min-height: 400px;
+                max-height: 600px;
             }
         }
         
