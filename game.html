@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHACKERS</title>
+    <title>SHACKERS - Game</title>
     <link rel="icon" href="favicon-32x32.png">
     <style>
         * {
@@ -20,10 +20,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;  /* Aligne le contenu vers le haut */
-            padding-top: 0;  /* Logo tout en haut */
+            justify-content: flex-start;
+            padding-top: 0;
             position: relative;
-            overflow: hidden;  /* Aucun scroll */
+            overflow: hidden;
         }
         
         #particles-canvas {
@@ -42,112 +42,60 @@
             padding: 20px;
             text-align: center;
             position: relative;
-            z-index: 1;  /* S'assurer que le contenu est au-dessus de la vidéo */
+            z-index: 1;
         }
         
         .logo-container {
-            margin-top: 500px !important;  /* Logo très bas */
-            padding-top: 100px;  /* Padding encore plus grand */
-            margin-bottom: 5px;  /* Espace minimal sous le logo */
+            margin-top: 20px;
+            margin-bottom: 30px;
             animation: fadeIn 1.5s ease-in;
         }
         
         .logo-container img {
-            max-width: 470px;  /* Logo un petit peu plus grand */
+            max-width: 350px;
             width: 85%;
             height: auto;
-            /* Logo déjà en couleur correcte, pas besoin d'inverser */
         }
         
-        .video-container {
+        .game-container {
             width: 100%;
-            max-width: 1400px;  /* Portail plus grand */
-            margin: -45px auto 0;  /* Remonté un peu plus */
+            max-width: 1200px;
+            height: 600px;
+            margin: 0 auto;
             border-radius: 15px;
             overflow: hidden;
             animation: fadeIn 2s ease-in;
             position: relative;
+            border: 2px solid rgba(77, 200, 255, 0.3);
+            box-shadow: 0 0 30px rgba(77, 200, 255, 0.2);
         }
         
-        
-        .video-container video {
+        .game-container iframe {
             width: 100%;
-            height: auto;
+            height: 100%;
+            border: none;
             display: block;
         }
-
-        /* Désactivation complète des overlays du portail */
-        .portal-overlay, .portal-shadow { display: none !important; }
-
-        /* Effets portail (tourbillon léger + blur local strict + ombre portée) */
-        .video-container {
-            /* Ajustez ces variables pour caler précisément le cercle sur le portail */
-            --portal-size: clamp(240px, 36vw, 680px);  /* diamètre du cercle */
-            --portal-center-x: 50%;                   /* position X du centre (en %) */
-            --portal-center-y: 52%;                   /* position Y du centre (en %) */
-            --portal-blur: 5px;                       /* intensité du flou */
-            --portal-ground-offset: 0px;              /* micro-ajustement vertical du point de contact au sol */
-        }
-
-        .portal-overlay {
+        
+        .back-button {
             position: absolute;
-            left: var(--portal-center-x);
-            top: var(--portal-center-y);
-            width: var(--portal-size);
-            height: var(--portal-size);
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 3; /* au-dessus de la vidéo et de l'ombre */
-            /* Flou strictement à l'intérieur du cercle */
-            -webkit-backdrop-filter: blur(var(--portal-blur));
-            backdrop-filter: blur(var(--portal-blur));
-            /* S'assure d'un bord net (pas de dégradé qui déborde) */
-            clip-path: circle(50% at 50% 50%);
-            overflow: clip;
-            /* Matière subtile en tourbillon (très léger) */
-            background-image:
-                repeating-conic-gradient(from 0deg,
-                    rgba(140,200,255,0.07) 0deg 12deg,
-                    rgba(0,0,0,0) 12deg 24deg);
-            background-blend-mode: screen;
-            opacity: 0.45;
-            animation: portal-rotate 60s linear infinite;
-            filter: saturate(110%) contrast(105%);
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(77, 200, 255, 0.2);
+            border: 1px solid rgba(77, 200, 255, 0.5);
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            z-index: 10;
         }
-
-        @keyframes portal-rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to   { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        /* Ombre portée du portail: sous le bord inférieur du cercle */
-        .portal-shadow {
-            position: absolute;
-            left: var(--portal-center-x);
-            top: calc(var(--portal-center-y) + (var(--portal-size) / 2) + var(--portal-ground-offset));
-            transform: translate(-50%, -40%) perspective(700px) rotateX(70deg) scaleY(1.1);
-            width: min(90%, calc(var(--portal-size) * 1.2));
-            height: clamp(20px, calc(var(--portal-size) * 0.12), 140px);
-            pointer-events: none;
-            z-index: 2; /* au-dessus de la vidéo, sous l'overlay */
-            background: radial-gradient(ellipse at center,
-                rgba(0,0,0,0.55) 0%,
-                rgba(0,0,0,0.30) 40%,
-                rgba(0,0,0,0.12) 60%,
-                rgba(0,0,0,0) 78%);
-            filter: blur(16px);
-            opacity: 0.55;
-            mix-blend-mode: multiply;
-        }
-
-        @media (max-width: 768px) {
-            .video-container {
-                --portal-size: clamp(200px, 60vw, 520px);
-                --portal-center-y: 52%;
-                --portal-blur: 4px;
-            }
-            .portal-shadow { filter: blur(12px); opacity: 0.5; }
+        
+        .back-button:hover {
+            background: rgba(77, 200, 255, 0.3);
+            border-color: rgba(77, 200, 255, 0.8);
+            transform: translateX(-2px);
         }
         
         @keyframes fadeIn {
@@ -166,15 +114,16 @@
                 max-width: 90%;
             }
             
-            .video-container {
+            .game-container {
                 max-width: 95%;
+                height: 500px;
             }
         }
         
         /* Footer Styles */
         .footer {
             position: fixed;
-            bottom: 50px;  /* Footer remonté plus */
+            bottom: 50px;
             left: 0;
             right: 0;
             padding: 8px 20px 8px;
@@ -189,13 +138,13 @@
         
         .footer-row {
             display: flex;
-            justify-content: center;  /* Centre tout le contenu */
+            justify-content: center;
             align-items: center;
-            gap: 80px;  /* Espace réduit entre logo et liens sociaux */
-            padding-bottom: 8px;  /* Espace entre logos et ligne */
+            gap: 80px;
+            padding-bottom: 8px;
             margin-bottom: 0;
             position: relative;
-            top: 48px;  /* Remonté de 2px */
+            top: 48px;
         }
         
         .footer-logo {
@@ -209,30 +158,12 @@
             height: auto;
             filter: brightness(0.8);
             position: relative;
-            top: -2px;  /* Remonte encore le logo blanc */
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-        
-        .nav-link {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-link:hover {
-            color: #fff;
+            top: -2px;
         }
         
         .social-icons {
             display: flex;
-            gap: 15px;  /* Réduit l'espace entre icônes */
+            gap: 15px;
         }
         
         .social-icon {
@@ -250,7 +181,7 @@
             text-align: center;
             color: rgba(255,255,255,0.5);
             font-size: 11px;
-            margin-top: -12px;  /* Espace après la ligne */
+            margin-top: -12px;
             padding-top: 0;
         }
         
@@ -264,155 +195,28 @@
                 flex-direction: column;
                 gap: 20px;
             }
-            
-            .dropdown-content {
-                bottom: auto;
-                top: 100%;
-                margin-bottom: 0;
-                margin-top: 10px;
-            }
-        }
-    </style>
-    <style>
-        /* Calibration: ellipse interne stricte + ombre contact (priorité haute) */
-        .video-container {
-            isolation: isolate;
-            /* Centre optimisé pour desktop screenshot */
-            --portal-center-x: 50%;
-            --portal-center-y: 54%;
-            /* Ellipse de l'ouverture */
-            --portal-rx: clamp(180px, 16.5vw, 340px);
-            --portal-ry: clamp(260px, 24vw, 520px);
-            /* Inset interne pour ne pas mordre l'anneau */
-            --portal-inset-px: clamp(8px, 1.8vw, 24px);
-            /* Intensité et offset de l'ombre */
-            --portal-blur: 5px;
-            --shadow-offset-y: 6px;
-        }
-
-        /* Position de l'overlay (ellipse exacte) */
-        .video-container .portal-overlay {
-            left: var(--portal-center-x);
-            top: var(--portal-center-y);
-            width: calc(var(--portal-rx) * 2);
-            height: calc(var(--portal-ry) * 2);
-            transform: translate(-50%, -50%);
-        }
-
-        /* Flou + tourbillon strictement à l'intérieur de l'ellipse */
-        .video-container .portal-overlay .portal-core {
-            -webkit-backdrop-filter: blur(var(--portal-blur));
-            backdrop-filter: blur(var(--portal-blur));
-            clip-path: ellipse(calc(var(--portal-rx) - var(--portal-inset-px)) calc(var(--portal-ry) - var(--portal-inset-px)) at 50% 50%);
-            opacity: 0.42;
-            animation: portal-rotate-core 60s linear infinite;
-        }
-
-        /* Ombre: située au bord inférieur de l'ellipse */
-        .video-container .portal-shadow {
-            left: var(--portal-center-x);
-            top: calc(var(--portal-center-y) + var(--portal-ry) + var(--shadow-offset-y));
-            transform: translate(-50%, -50%) perspective(760px) rotateX(72deg) scaleY(1.08);
-            width: min(95%, calc(var(--portal-rx) * 3.2));
-            height: clamp(18px, calc(var(--portal-ry) * 0.18), 140px);
-        }
-
-        /* Mobile finetune */
-        @media (max-width: 768px) {
-            .video-container {
-                --portal-center-y: 52.5%;
-                --portal-rx: clamp(140px, 34vw, 280px);
-                --portal-ry: clamp(200px, 46vw, 420px);
-                --portal-inset-px: clamp(6px, 2.5vw, 18px);
-                --portal-blur: 4px;
-                --shadow-offset-y: 4px;
-            }
-        }
-        
-        /* Zone cliquable du portail */
-        .portal-link {
-            position: absolute;
-            left: 50%;
-            top: 54%;
-            transform: translate(-50%, -50%);
-            width: clamp(200px, 30vw, 500px);
-            height: clamp(200px, 30vw, 500px);
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-        
-        .portal-link:hover {
-            background: radial-gradient(circle at center, 
-                rgba(77, 200, 255, 0.1) 0%, 
-                rgba(77, 200, 255, 0.05) 50%, 
-                transparent 100%);
-            box-shadow: 0 0 50px rgba(77, 200, 255, 0.3);
-        }
-        
-        @media (max-width: 768px) {
-            .portal-link {
-                top: 52.5%;
-                width: clamp(150px, 45vw, 400px);
-                height: clamp(150px, 45vw, 400px);
-            }
-        }
-    </style>
-    <style>
-        /* Overrides ciblés: flou limité à l'intérieur + ombre au contact */
-        .video-container {
-            isolation: isolate;
-            --portal-inset: 8%;
-            --shadow-offset-y: 0px;
-        }
-        .video-container .portal-overlay {
-            -webkit-backdrop-filter: none !important;
-            backdrop-filter: none !important;
-            background-image: none !important;
-            clip-path: none !important;
-            filter: none !important;
-            opacity: 1 !important;
-            animation: none !important;
-        }
-        .video-container .portal-overlay .portal-core {
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            -webkit-backdrop-filter: blur(var(--portal-blur));
-            backdrop-filter: blur(var(--portal-blur));
-            clip-path: circle(calc(50% - var(--portal-inset)) at 50% 50%);
-            background-image: repeating-conic-gradient(from 0deg,
-                rgba(140,200,255,0.07) 0deg 12deg,
-                rgba(0,0,0,0) 12deg 24deg);
-            background-blend-mode: screen;
-            opacity: 0.45;
-            animation: portal-rotate-core 60s linear infinite;
-            filter: saturate(110%) contrast(105%);
-        }
-        @keyframes portal-rotate-core { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .video-container .portal-shadow {
-            top: calc(var(--portal-center-y) + (var(--portal-size) / 2) + var(--portal-ground-offset) + var(--shadow-offset-y));
-            transform: translate(-50%, -50%) perspective(700px) rotateX(70deg) scaleY(1.1);
         }
     </style>
 </head>
 <body>
     <!-- Canvas pour les particules animées -->
     <canvas id="particles-canvas"></canvas>
+    
+    <!-- Bouton retour -->
+    <a href="index.html" class="back-button">← Back to Portal</a>
+    
     <div class="container">
-        <div class="logo-container" style="margin-top: -130px !important; margin-bottom: -70px !important;">
-            <img src="landscapeversionegative.png" alt="SHACKERS" style="max-width: 350px !important;">
+        <div class="logo-container">
+            <img src="landscapeversionegative.png" alt="SHACKERS">
         </div>
         
-        <div class="video-container">
-            <video autoplay loop muted playsinline>
-                <source src="portal.webm" type="video/webm">
-                <source src="portal.382b05b5.webm" type="video/webm">
-                Your browser does not support the video tag.
-            </video>
-            <!-- Zone cliquable au centre du portail -->
-            <a href="game.html" class="portal-link" title="Enter the Game"></a>
+        <!-- Conteneur du jeu avec iframe Vercel -->
+        <div class="game-container">
+            <iframe src="https://shacker-game.vercel.app" 
+                    title="SHACKERS Game"
+                    allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
         </div>
         
         <!-- Footer -->
@@ -423,8 +227,6 @@
                     <div class="footer-logo">
                         <img src="landscape-logo-dark.jpg" alt="SHACKERS" style="width: 90px; height: auto; opacity: 0.7; filter: invert(1); position: relative; top: -1px;">
                     </div>
-                    
-                    <!-- Navigation Links removed -->
                     
                     <!-- Social Icons -->
                     <div class="social-icons">
